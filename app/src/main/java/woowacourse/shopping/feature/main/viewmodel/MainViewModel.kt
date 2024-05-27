@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import woowacourse.shopping.data.cart.CartRepository
 import woowacourse.shopping.data.inquiryhistory.InquiryHistoryRepository
+import woowacourse.shopping.data.product.ProductClient
 import woowacourse.shopping.data.product.ProductRepository
+import woowacourse.shopping.data.product.ProductService
 import woowacourse.shopping.model.CartItemQuantity
 import woowacourse.shopping.model.InquiryHistory
 import woowacourse.shopping.model.Product
@@ -40,7 +42,11 @@ class MainViewModel(
 
     fun loadPage() {
         val products = products.value ?: emptyList()
-        _products.value = products + productRepository.findRange(page++, PAGE_SIZE)
+        var product = emptyList<Product>()
+        thread {
+            product = products + productRepository.findRange(page++, PAGE_SIZE)
+        }.join()
+        _products.postValue(product)
         updateQuantities()
         updateQuantitySum()
     }

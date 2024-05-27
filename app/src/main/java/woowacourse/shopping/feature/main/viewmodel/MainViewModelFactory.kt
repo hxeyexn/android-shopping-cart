@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import woowacourse.shopping.data.cart.CartRepository
 import woowacourse.shopping.data.inquiryhistory.InquiryHistoryRepository
 import woowacourse.shopping.data.product.ProductRepository
+import woowacourse.shopping.data.product.ProductService
 import java.lang.IllegalArgumentException
 
 class MainViewModelFactory(

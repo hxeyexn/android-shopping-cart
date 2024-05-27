@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import woowacourse.shopping.data.cart.CartRepository
 import woowacourse.shopping.data.inquiryhistory.InquiryHistoryRepository
 import woowacourse.shopping.data.product.ProductRepository
+import woowacourse.shopping.data.product.ProductService
 import woowacourse.shopping.model.CartItem
 import woowacourse.shopping.model.InquiryHistory
 import woowacourse.shopping.model.Product
@@ -35,9 +36,11 @@ class ProductDetailViewModel(
     }
 
     fun loadProduct(productId: Long) {
-        _product.value = productRepository.find(productId)
-        loadQuantity(productId)
-        saveInquiryHistory()
+        thread {
+            _product.value = productRepository.find(productId)
+            loadQuantity(productId)
+            saveInquiryHistory()
+        }
     }
 
     fun addProductToCart(productId: Long) {

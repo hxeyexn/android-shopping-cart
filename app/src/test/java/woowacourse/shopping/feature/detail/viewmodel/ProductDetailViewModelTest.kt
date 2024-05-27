@@ -14,7 +14,7 @@ import woowacourse.shopping.data.inquiryhistory.InquiryHistoryDao
 import woowacourse.shopping.data.inquiryhistory.InquiryHistoryLocalRepository
 import woowacourse.shopping.data.inquiryhistory.InquiryHistoryRepository
 import woowacourse.shopping.data.product.ProductDummyRepository
-import woowacourse.shopping.data.product.ProductRepository
+import woowacourse.shopping.data.product.ProductService
 import woowacourse.shopping.feature.InstantTaskExecutorExtension
 import woowacourse.shopping.feature.getOrAwaitValue
 import woowacourse.shopping.imageUrl
@@ -27,7 +27,7 @@ class ProductDetailViewModelTest {
     private lateinit var viewModel: ProductDetailViewModel
     private val cartDao = mockk<CartDao>()
     private val inquiryHistoryDao = mockk<InquiryHistoryDao>()
-    private val productRepository: ProductRepository = ProductDummyRepository
+    private val productRepository: ProductService = ProductDummyRepository
     private val cartRepository: CartRepository = CartDummyRepository(cartDao)
     private val inquiryHistoryRepository: InquiryHistoryRepository = InquiryHistoryLocalRepository(inquiryHistoryDao)
 
